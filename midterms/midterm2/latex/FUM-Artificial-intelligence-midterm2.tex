@@ -1,0 +1,522 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xepersian}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+
+
+% ---------------------------
+%      Color Palette
+% ---------------------------
+%\definecolor{BgDark}{HTML}{F5F7FF}      % page background
+%\definecolor{BgCard}{HTML}{EDEFF7}      % card / panel background
+%\definecolor{AccentBlue}{HTML}{3A5CCC}
+%\definecolor{AccentPurple}{HTML}{7C5ACF}
+%\definecolor{AccentCyan}{HTML}{2FA4B7}
+%\definecolor{AccentGold}{HTML}{B5892D}
+%\definecolor{TextPrimary}{HTML}{1F2335}
+%\definecolor{TextMuted}{HTML}{6B7089}
+%\definecolor{RuleLine}{HTML}{D6D9E6}
+%
+%\pagecolor{BgDark}
+%\color{TextPrimary}
+
+\definecolor{BgDark}{HTML}{141420}
+\definecolor{BgCard}{HTML}{1E1E2E}
+\definecolor{AccentBlue}{HTML}{7AA2F7}
+\definecolor{AccentPurple}{HTML}{BB9AF7}
+\definecolor{AccentCyan}{HTML}{7AA2F7}
+\definecolor{AccentGold}{HTML}{E0AF68}
+\definecolor{TextPrimary}{HTML}{CDD6F4}
+\definecolor{TextMuted}{HTML}{6C7086}
+\definecolor{RuleLine}{HTML}{313244}
+
+\pagecolor{BgDark}
+\color{TextPrimary}
+
+% ---------------------------
+%  RTL-safe Info Box
+% ---------------------------
+\newmdenv[
+backgroundcolor=BgCard,
+fontcolor=TextPrimary,
+linecolor=AccentBlue,
+linewidth=1.2pt,
+rightline=true,   % RTL: accent border on the RIGHT
+leftline=false,
+topline=false,
+bottomline=false,
+innerrightmargin=12pt,
+innerleftmargin=12pt,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+skipabove=10pt,
+skipbelow=10pt,
+]{infobox}
+% ---------------------------
+%        Font Setup
+% ---------------------------
+\settextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+\setlatintextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+
+% ---------------------------
+%     Custom Adjustments
+% ---------------------------
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\thesection}{\arabic{section}}
+\newcommand{\GroupA}{\noindent \textcolor{AccentGold}{گروه \lr{a}}}
+\newcommand{\GroupB}{\noindent\textcolor{AccentCyan}{گروه \lr{b}}}
+
+% User-defined commands for homework info (adjust as needed)
+\newcommand{\HomeworkNumber}{1}
+\newcommand{\HomeworkDeadline}{1403/12/22}
+\newcommand{\id}{\texttt{\detokenize{@Amir_Hossein_Afshar}}}
+
+
+
+\begin{document}
+
+% header
+\begin{infobox}
+
+\begin{minipage}{0.295\textwidth}
+	\raggedleft
+	مبانی هوش مصنوعی \\
+	دانشگاه فردوسی مشهد\\
+	گروه مهندسی کامپیوتر
+\end{minipage}
+\begin{minipage}{0.4\textwidth} 
+	\centering 
+	\includegraphics[scale=0.3]{assets/fum-logo.png}
+\end{minipage}
+\begin{minipage}{0.295\textwidth}
+	آزمون میانترم دوم \\
+	مورخ 9 خرداد 1405 \\
+	مدت زمان آزمون: 90 دقیقه
+\end{minipage}
+\end{infobox}
+
+
+\begin{infobox}
+	دانشجویان محترم لطفا به موارد زیر توجه فرمایید:
+	\begin{itemize}
+		\itemsep0.4em
+		\item
+		تحویل آزمون فقط از طریق سامانه آموزش مجازی دانشگاه امکان‌پذیر است.
+		\item
+		پاسخ آزمون باید دست‌نویس، خوانا و با استفاده از خودکار آبی یا مشکی و یا به صورت دیجیتالی با استفاده از قلم نوری نوشته شوند و هرگونه پاسخ تایپی غیرقابل پذیرش است.
+		\item
+		از پاسخ حل‌شده دیگران استفاده نکنید. پیامدهای این کار با دانشجو می‌باشد.
+		\item
+		نوشتن جواب آخر به تنهایی نمره‌ای نداشته و تمام مراحل حل، مشمول نمره می‌باشد.
+		\item
+		در حل سوالات مدیریت زمان داشته باشید. زمان آزمون تمدید نخواهد شد. همچنین بدیهی است که ارسال پس از موعد، شامل نمره نخواهد بود.
+		\item
+		دانشجویان با شماره دانشجویی زوج، به سوالات گروه a پاسخ دهند و دانشجویان با شماره دانشجویی فرد، به سوالات گروه b و همچنین در پاسخنامه نیز شماره دانشجویی ذکر شود.
+		\item 
+		فایل نهایی پاسخ به صورت pdf و نحوه نام‌گذاری فایل پاسخ مطابق جدول زیر باشد.
+		
+	\end{itemize}
+	
+	
+	\vspace{2pt}
+	
+	% RTL-safe table: use center environment, manual column colors
+	\begin{center}
+		\arrayrulecolor{RuleLine}
+		\begin{tabular}{|>{\columncolor{BgCard}\centering\arraybackslash}p{3cm}|>{\columncolor{BgDark}\centering\arraybackslash}p{7cm}|}
+			\hline
+			\textcolor{AccentCyan}{\bfseries\lr{Format}} &
+			\texttt{\lr{StudentID-Full\_Name-midterm1.pdf}} \\
+			\hline
+			\textcolor{AccentGold}{\bfseries\lr{Example}} &
+			\textcolor{TextMuted}{\texttt{\lr{9876543210-Alan\_Turing-midterm1.pdf}}} \\
+			\hline
+		\end{tabular}
+		\label{tab:file_format}
+	\end{center}
+	
+\end{infobox}
+
+
+\vspace{2pt}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.8pt}}
+% ---------------------------------
+%          questions
+% ---------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال اول}}
+درستی و نادرستی موارد زیر را مشخص کنید. در صورت نادرستی مثال نقض بزنید و در صورت درستی آن را نشان دهید.
+\vspace{0.2cm}
+	سوال مشترک \GroupA \, و \GroupB: 
+\begin{itemize}
+	\item 
+	الف) استفاده از هرس آلفا-بتا می تواند مقدار ذخیره شده در گره میانی را تغییر دهد.
+	\item 
+	ب) در یک سناریو بازی که حریف الزاما خصمانه نیست، عامل max ممکن است به ارزشی بالاتر از مقدار گره برسد.
+	\item 
+	ج) درخت max mini کامل ممکن است سیاست غیربهینه ای در برابر یک عامل خصمانه برگرداند.
+	\item 
+	د) اگر در یک درخت بازی ترتیب ملاقات گره ها تغییر کند، شاخه هایی که با هرس آلفا-بتا حذف می شوند تغییر خواهند کرد.
+	\item 
+	ه) اگر در یک درخت بازی ترتیب ملاقات گره ها تغییر کند ممکن است مقدار گره ریشه نیز در نهایت تغییر کند.
+\end{itemize}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال دوم}}
+
+هرس آلفا-بتا را بر روی درخت minimax زیر بدست بیاورید و گره های هرس شده را مشخص کنید. (گره ریشه را max در نظر بگیرید.)
+
+\GroupA:
+
+\begin{tikzpicture}[
+	scale=0.9,
+	% Max Node (Upward Triangle)
+	max node/.style={
+		regular polygon,
+		regular polygon sides=3,
+		draw=AccentCyan,
+		fill=BgCard,
+		very thick,
+		minimum size=1cm,
+		inner sep=0pt
+	},
+	% Min Node (Downward Triangle)
+	min node/.style={
+		regular polygon,
+		regular polygon sides=3,
+		shape border rotate=180,
+		draw=AccentCyan,
+		fill=BgCard,
+		very thick,
+		minimum size=1cm,
+		inner sep=0pt
+	},
+	% Terminal Node (Square)
+	term node/.style={
+		rectangle,
+		draw=AccentCyan,
+		fill=BgCard,
+		text=TextPrimary,
+		very thick,
+		minimum size=0.8cm,
+		font=\Large
+	},
+	% Edge style
+	edge/.style={
+		draw=TextMuted,
+		very thick
+	},
+	% Label style
+	lbl/.style={
+		text=TextPrimary,
+		font=\large\itshape
+	}
+	]
+	
+	% ================= NODES =================
+	% Level 0 (Root)
+	\node[max node] (root) at (0, 0) {};
+	
+	% Level 1
+	\node[term node] (t4) at (-4, -1.8) {۴};
+	\node[min node]  (m1) at (-1.5, -1.8) {};
+	\node[min node]  (m2) at (3, -1.8) {};
+	
+	% Level 2
+	\node[term node] (t6a)  at (-2.8, -3.8) {۶};
+	\node[max node]  (max1) at (-0.2, -3.8) {};
+	
+	\node[term node] (t6b)  at (1.7, -3.8) {۶};
+	\node[max node, label={[lbl]right:$D$}]  (maxD) at (4.3, -3.8) {};
+	
+	% Level 3
+	\node[term node] (t1)   at (-1.5, -5.8) {۱};
+	\node[min node, label={[lbl]right:$A$}]  (minA) at (1.1, -5.8) {};
+	
+	\node[term node, label={[lbl]right:$E$}] (t8)   at (3, -5.8) {۸};
+	\node[min node, label={[lbl]right:$F$}]  (minF) at (5.6, -5.8) {};
+	
+	% Level 4
+	\node[term node, label={[lbl]above left:$B$}]  (t3)  at (-0.2, -7.8) {۳};
+	\node[term node, label={[lbl]above right:$C$}] (t2a) at (2.4, -7.8) {۲};
+	
+	\node[term node, label={[lbl]above right:$G$}] (t10) at (4.3, -7.8) {۱۰};
+	\node[term node, label={[lbl]above right:$H$}] (t2b) at (6.9, -7.8) {۲};
+	
+	% ================= EDGES =================
+	\draw[edge] (root) -- (t4);
+	\draw[edge] (root) -- (m1);
+	\draw[edge] (root) -- (m2);
+	
+	\draw[edge] (m1) -- (t6a);
+	\draw[edge] (m1) -- (max1);
+	
+	\draw[edge] (max1) -- (t1);
+	\draw[edge] (max1) -- (minA);
+	
+	\draw[edge] (minA) -- (t3);
+	\draw[edge] (minA) -- (t2a);
+	
+	\draw[edge] (m2) -- (t6b);
+	\draw[edge] (m2) -- (maxD);
+	
+	\draw[edge] (maxD) -- (t8);
+	\draw[edge] (maxD) -- (minF);
+	
+	\draw[edge] (minF) -- (t10);
+	\draw[edge] (minF) -- (t2b);
+	
+\end{tikzpicture}
+
+\bigskip
+\bigskip
+
+\GroupB:
+
+\begin{tikzpicture}[
+	scale=1,
+	% Max Node (Upward Triangle)
+	transform shape,
+	max node/.style={
+		regular polygon,
+		regular polygon sides=3,
+		draw=AccentCyan,
+		fill=BgCard,
+		very thick,
+		minimum size=0.8cm,
+		inner sep=0pt
+	},
+	% Min Node (Downward Triangle)
+	min node/.style={
+		regular polygon,
+		regular polygon sides=3,
+		shape border rotate=180,
+		draw=AccentCyan,
+		fill=BgCard,
+		very thick,
+		minimum size=0.8cm,
+		inner sep=0pt
+	},
+	% Edge style
+	edge/.style={
+		draw=TextMuted,
+		very thick
+	},
+	% Node text label style (A, B, C...)
+	lbl/.style={
+		text=TextPrimary,
+		font=\large\itshape
+	},
+	% Node value label style (10, 20...)
+	val/.style={
+		text=TextPrimary,
+		font=\large
+	}
+	]
+	
+	% ================= NODES =================
+	% Level 0 (MAX)
+	\node[max node, label={[lbl]right:$A$}] (A) at (0, 0) {};
+	
+	% Level 1 (MIN)
+	\node[min node, label={[lbl]right:$B$}, label={[val]below:۱۰}] (B) at (-3.5, -2) {};
+	\node[min node, label={[lbl]right:$C$}] (C) at (-1.2, -2) {};
+	\node[min node, label={[lbl]right:$D$}] (D) at (1.2, -2) {};
+	\node[min node, label={[lbl]right:$E$}, label={[val]below:۲۰}] (E) at (3.8, -2) {};
+	
+	% Level 2 (MAX)
+	\node[max node, label={[lbl]right:$F$}, label={[val]below:۱۵}] (F) at (-2.5, -4) {};
+	\node[max node, label={[lbl]right:$G$}] (G) at (0, -4) {};
+	\node[max node, label={[lbl]right:$H$}, label={[val]below:۱۵}] (H) at (1.2, -4) {};
+	\node[max node, label={[lbl]right:$I$}] (I) at (3.5, -4) {};
+	
+	% Level 3 (MIN)
+	\node[min node, label={[lbl]right:$J$}, label={[val]below:۱}] (J) at (-1.2, -6) {};
+	\node[min node, label={[lbl]right:$K$}] (K) at (1.2, -6) {};
+	\node[min node, label={[lbl]right:$L$}, label={[val]below:۲۰}] (L) at (2.5, -6) {};
+	\node[min node, label={[lbl]right:$M$}] (M) at (4.8, -6) {};
+	
+	% Level 4 (MAX)
+	\node[max node, label={[lbl]right:$N$}, label={[val]below:۵}] (N) at (0, -8) {};
+	\node[max node, label={[lbl]right:$O$}, label={[val]below:۲}] (O) at (2.4, -8) {};
+	\node[max node, label={[lbl]right:$P$}, label={[val]below:۵۰}] (P) at (3.6, -8) {};
+	\node[max node, label={[lbl]right:$Q$}, label={[val]below:۲}] (Q) at (6.0, -8) {};
+	
+	% ================= EDGES =================
+	\draw[edge] (A) -- (B);
+	\draw[edge] (A) -- (C);
+	\draw[edge] (A) -- (D);
+	\draw[edge] (A) -- (E);
+	
+	\draw[edge] (C) -- (F);
+	\draw[edge] (C) -- (G);
+	
+	\draw[edge] (D) -- (H);
+	\draw[edge] (D) -- (I);
+	
+	\draw[edge] (G) -- (J);
+	\draw[edge] (G) -- (K);
+	
+	\draw[edge] (I) -- (L);
+	\draw[edge] (I) -- (M);
+	
+	\draw[edge] (K) -- (N);
+	\draw[edge] (K) -- (O);
+	
+	\draw[edge] (M) -- (P);
+	\draw[edge] (M) -- (Q);
+	
+\end{tikzpicture}
+
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال سوم}}
+	
+	سوال مشترک \GroupA \, و \GroupB: 
+\vspace{0.1cm}
+\\
+\noindent
+	
+	در یک جستجوی خصمانه با هرس آلفا-بتا، مقدار گره ریشه max و گره دیگر max که در عمق سوم درخت است، به ترتیب برابر با 
+$n$
+و 
+$n'$
+بدست آمده است. اگر جستجو را بدون هرس اجرا کرده بودیم، مقدار این گره به ترتیب برابر با 
+$m$
+و
+$m'$
+به دست می آمد. مقادیر 
+$n$
+و
+$m$
+و همینطور
+$n'$
+و 
+$m'$
+را با یکدیگر از نظر مقداری مقایسه کنید.
+
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+
+% Add more sections as needed...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال چهارم}}
+
+	سوال مشترک \GroupA \, و \GroupB: 
+\vspace{0.2cm}
+\\
+\noindent
+ در این مسئله $CSP$ می‌خواهیم به هر کدام از نواحی نقشه عددی از مجموعه 
+$\{2, 3, 4, 5, 6, 7, 8, 9, 10\}$ 
+نسبت دهیم طوری که هر جفت از نواحی مجاور نسبت به هم اول باشند.
+
+
+\begin{tikzpicture}[
+	scale=0.6,
+	transform shape,
+	% Text style
+	persian text/.style={
+		text=TextPrimary,
+		anchor=east,
+		align=right,
+		text width=14cm,
+		font=\large
+	},
+	% Diagram style
+	venn circle/.style={
+		draw=TextPrimary,
+		very thick,
+		fill=BgCard,
+		fill opacity=1,
+		minimum size=2cm,
+		circle
+	},
+	outer circle/.style={
+		draw=TextPrimary,
+		very thick,
+		minimum size=4.5cm,
+		circle
+	}
+	]
+	
+	% --- Text Nodes ---
+	% --- Diagram ---
+	\begin{scope}[shift={(2, 0)}]
+		% Outer boundary
+		\node[outer circle] at (0, 0) {};
+		
+		% Three inner overlapping circles
+		\node[venn circle] (c1) at (-0.5, 0.4) {};
+		\node[venn circle] (c2) at (0.5, 0.4) {};
+		\node[venn circle] (c3) at (0, -0.6) {};
+	\end{scope}
+	
+\end{tikzpicture}
+
+\begin{itemize}
+	\item 
+	الف: یک جواب برای مسئله بیابید.
+	\item 
+	 ب: $k$ سازگار بودن مسئله را برای $k = 2, 3, 4$ بررسی کنید.
+\end{itemize}
+
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+
+% Add more sections as needed...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال پنجم}}
+ﮔﺰاره ﻫﺎی زﯾﺮ را ﺑﻪ ﻣﻨﻄﻖ ﻣﺮﺗﺒﻪ اول ﺗﺒﺪﯾﻞ ﮐﻨﯿﺪ و ﺳﭙﺲ ﻧﺘﯿﺠﻪ را ﺑﺎ ﮐﻤﮏ Resolution اﺳﺘﻨﺘﺎج ﮐﻨﯿﺪ.
+
+\GroupA
+\begin{enumerate}
+\item 
+هر پسر یا دختری، کودک است.
+\item 
+هر کودک، یا یک عروسک می‌گیرد یا یک قطار یا یک تکه زغال.
+\item 
+هیچ پسری هیچ عروسکی نمی‌گیرد. 
+\item 
+هیچ کودک خوبی، هیچ تکه زغالی نمی‌گیرد. 
+\item 
+ نتیجه: اگر هیچ کودکی قطار نگیرد، آنگاه هیچ پسری خوب نیست.
+\end{enumerate}
+
+\GroupB
+
+\begin{enumerate}
+	\item 
+	 تمام سگ‌های شکاری (Hound) در شب زوزه می‌کشند.
+	\item 
+	هر کسی که گربه دارد، هیچ موشی نخواهد داشت.
+	\item 
+	سبک خواب ها 
+	\lr{(Light sleepers)}
+		 چیزی که در شب زوزه می‌کشد ندارند. 
+	\item 
+	جان یا یک گربه دارد یا یک سگ شکاری. 
+	\item 
+ نتیجه: اگر جان سبک خواب باشد، پس جان هیچ موشی ندارد.
+\end{enumerate}
+
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+
+\end{document}

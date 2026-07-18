@@ -1,0 +1,377 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xepersian}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+
+
+% ---------------------------
+%      Color Palette
+% ---------------------------
+%\definecolor{BgDark}{HTML}{F5F7FF}      % page background
+%\definecolor{BgCard}{HTML}{EDEFF7}      % card / panel background
+%\definecolor{AccentBlue}{HTML}{3A5CCC}
+%\definecolor{AccentPurple}{HTML}{7C5ACF}
+%\definecolor{AccentCyan}{HTML}{2FA4B7}
+%\definecolor{AccentGold}{HTML}{B5892D}
+%\definecolor{TextPrimary}{HTML}{1F2335}
+%\definecolor{TextMuted}{HTML}{6B7089}
+%\definecolor{RuleLine}{HTML}{D6D9E6}
+%
+%\pagecolor{BgDark}
+%\color{TextPrimary}
+
+\definecolor{BgDark}{HTML}{141420}
+\definecolor{BgCard}{HTML}{1E1E2E}
+\definecolor{AccentBlue}{HTML}{7AA2F7}
+\definecolor{AccentPurple}{HTML}{BB9AF7}
+\definecolor{AccentCyan}{HTML}{7AA2F7}
+\definecolor{AccentGold}{HTML}{E0AF68}
+\definecolor{TextPrimary}{HTML}{CDD6F4}
+\definecolor{TextMuted}{HTML}{6C7086}
+\definecolor{RuleLine}{HTML}{313244}
+
+\pagecolor{BgDark}
+\color{TextPrimary}
+
+% ---------------------------
+%  RTL-safe Info Box
+% ---------------------------
+\newmdenv[
+backgroundcolor=BgCard,
+fontcolor=TextPrimary,
+linecolor=AccentBlue,
+linewidth=1.2pt,
+rightline=true,   % RTL: accent border on the RIGHT
+leftline=false,
+topline=false,
+bottomline=false,
+innerrightmargin=12pt,
+innerleftmargin=12pt,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+skipabove=10pt,
+skipbelow=10pt,
+]{infobox}
+% ---------------------------
+%        Font Setup
+% ---------------------------
+\settextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+\setlatintextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+
+% ---------------------------
+%     Custom Adjustments
+% ---------------------------
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\thesection}{\arabic{section}}
+\newcommand{\GroupA}{\noindent \textcolor{AccentGold}{گروه \lr{a}}}
+\newcommand{\GroupB}{\noindent\textcolor{AccentCyan}{گروه \lr{b}}}
+
+% User-defined commands for homework info (adjust as needed)
+\newcommand{\HomeworkNumber}{1}
+\newcommand{\HomeworkDeadline}{1403/12/22}
+\newcommand{\id}{\texttt{\detokenize{@Amir_Hossein_Afshar}}}
+
+
+
+\begin{document}
+
+% header
+\begin{infobox}
+
+\begin{minipage}{0.295\textwidth}
+	\raggedleft
+	مبانی هوش مصنوعی \\
+	دانشگاه فردوسی مشهد\\
+	گروه مهندسی کامپیوتر
+\end{minipage}
+\begin{minipage}{0.4\textwidth} 
+	\centering 
+	\includegraphics[scale=0.3]{assets/fum-logo.png}
+\end{minipage}
+\begin{minipage}{0.295\textwidth}
+	آزمون میانترم اول \\
+	مورخ 1 اردیبهشت 1405 \\
+	مدت زمان آزمون: 60 دقیقه
+\end{minipage}
+\end{infobox}
+
+
+\begin{infobox}
+	دانشجویان محترم لطفا به موارد زیر توجه فرمایید:
+	\begin{itemize}
+		\itemsep0.4em
+		\item
+		تحویل آزمون فقط از طریق سامانه آموزش مجازی دانشگاه امکان‌پذیر است.
+		\item
+		پاسخ آزمون باید دست‌نویس، خوانا و با استفاده از خودکار آبی یا مشکی و یا به صورت دیجیتالی با استفاده از قلم نوری نوشته شوند و هرگونه پاسخ تایپی غیرقابل پذیرش است.
+		\item
+		از پاسخ حل‌شده دیگران استفاده نکنید. پیامدهای این کار با دانشجو می‌باشد.
+		\item
+		نوشتن جواب آخر به تنهایی نمره‌ای نداشته و تمام مراحل حل، مشمول نمره می‌باشد.
+		\item
+		در حل سوالات مدیریت زمان داشته باشید. زمان آزمون تمدید نخواهد شد. همچنین بدیهی است که ارسال پس از موعد، شامل نمره نخواهد بود.
+		\item
+		دانشجویان با شماره دانشجویی زوج، به سوالات گروه a پاسخ دهند و دانشجویان با شماره دانشجویی فرد، به سوالات گروه b و همچنین در پاسخنامه نیز شماره دانشجویی ذکر شود.
+		\item 
+		فایل نهایی پاسخ به صورت pdf و نحوه نام‌گذاری فایل پاسخ مطابق 
+		
+	\end{itemize}
+	
+	
+	\vspace{2pt}
+	
+	% RTL-safe table: use center environment, manual column colors
+	\begin{center}
+		\arrayrulecolor{RuleLine}
+		\begin{tabular}{|>{\columncolor{BgCard}\centering\arraybackslash}p{3cm}|>{\columncolor{BgDark}\centering\arraybackslash}p{7cm}|}
+			\hline
+			\textcolor{AccentCyan}{\bfseries\lr{Format}} &
+			\texttt{\lr{StudentID-Full\_Name-midterm1.pdf}} \\
+			\hline
+			\textcolor{AccentGold}{\bfseries\lr{Example}} &
+			\textcolor{TextMuted}{\texttt{\lr{9876543210-Alan\_Turing-midterm1.pdf}}} \\
+			\hline
+		\end{tabular}
+		\label{tab:file_format}
+	\end{center}
+	
+\end{infobox}
+
+
+\vspace{2pt}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.8pt}}
+% ---------------------------------
+%          questions
+% ---------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال اول}}
+درستی و نادرستی موارد زیر را مشخص کنید. در صورت نادرستی مثال نقض بزنید و در صورت درستی آن را نشان دهید.
+
+\GroupA:
+\begin{itemize}
+	\item 
+	الف) در جستجوی درختی ($Tree\ Search$)، شرط Admissibility برای تضمین بهینگی $A^*$ کافی است.
+	\item 
+	ب) اگر $h$ سازگار باشد، مقدار $f(n)$ در طول هر مسیر از درخت جستجو غیرنزولی است.
+	\item 
+	ج) اگر $h(n)=h^*(n)$ باشد، الگوریتم $A^*$ فقط و فقط گره‌های روی مسیر بهینه را بسط می‌دهد.
+	\item 
+	د) هر تابع هیوریستیک ثابت ($h(n)=K$) برای هزینه‌های یال غیرمنفی، همواره Consistent است.
+\end{itemize}
+\GroupB:
+\begin{itemize}
+	\item 
+	الف) در Relaxation هزینه بهینه حل مسئله ساده‌شده، یک هیوریستیک Admissible برای مسئله اصلی است.
+	\item 
+	ب) استفاده از هیوریستیک Inadmissible (تخمین بیش از حد) همواره مانع از رسیدن به هدف می‌شود.
+	\item 
+	ج) تغییرات یک تابع Consistent بین دو گره متوالی ($|h(n) - h(n')|$) نمی‌تواند از هزینه واقعی یال بیشتر باشد.
+	\item 
+	د) اگر هیوریستیک $h$ مقدار $0$ را برگرداند، الگوریتم $A^*$ رفتاری مشابه جستجوی UCS خواهد داشت.
+\end{itemize}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال دوم}}
+
+ ربات امدادگر در یک محیط سه‌بعدی ($Grid\ World$) باید بسته‌ای را به مقصد برساند. هزینه جابجایی افقی ۱ واحد و تغییر ارتفاع ۲ واحد است. محدودیت‌های زیر بر حرکت ربات حاکم است:
+\begin{enumerate}
+	\item \textbf{C1 (فیزیکی):} عبور از خانه‌های مانع و دیواره‌ها ممنوع است.
+	\item \textbf{C2 (جابجایی):} تغییر ارتفاع (پرش/سقوط) فقط در خانه‌های دارای «پله‌برقی» میسر است.
+	\item \textbf{C3 (انرژی):} ربات برای هر گام نیاز به ۱ واحد انرژی دارد و ظرفیت مخزن آن محدود است.
+\end{enumerate}
+
+بخش مشترک \GroupA و \GroupB
+\begin{itemize}
+\item الف)
+دو تابع هیوریستیک متفاوت ($h_1$ و $h_2$) پیشنهاد دهید. برای ساخت $h_1$ حداقل دو مورد از محدودیت‌های بالا را حذف کرده و برای $h_2$ فقط یک مورد را حذف کنید (به‌گونه‌ای که $h_2$ مقدار دقیق‌تری نسبت به $h_1$ ارائه دهد). فرمول دقیق محاسباتی هر دو را بنویسید.
+
+\GroupA:
+\item ب)
+با استفاده از شرط مثلثی $h(n) \le c(n, a, n') + h(n')$، نشان دهید که آیا تابع $h_2$ شما ویژگی Consistency را دارد یا خیر؟ (اثبات یا ارائه مثال نقض).
+
+\GroupB:
+\item ب)
+رابطه تسلط (Dominance) را بین $h_1$ و $h_2$ تحلیل کنید. کدام یک در الگوریتم $A^*$ منجر به هرس بیشتر گراف جستجو می‌شود؟ اگر تابع جدیدی به صورت $h_3(n) = \max(h_1, h_2)$ تعریف کنیم، آیا ویژگی‌های Admissibility و Consistency حفظ می‌شوند؟
+
+\end{itemize}
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال سوم}}
+پیمایش 
+$A^*$
+درخت زیر را بدست آورید. گره A را گره ابتدایی و گره G 
+
+\GroupA:
+
+\begin{tikzpicture}[
+	scale=0.7,
+	transform shape,
+	% Standard node style
+	main node/.style={
+		circle,
+		draw=AccentCyan,
+		fill=BgCard,
+		text=TextPrimary,
+		very thick,
+		minimum size=1.2cm,
+		font=\Large,
+		align=center,
+		inner sep=0pt
+	},
+	% Directed Edge style
+	edge/.style={
+		->,          
+		>=stealth,   
+		draw=TextMuted,
+		very thick
+	},
+	% Edge weight label style
+	weight/.style={
+		text=TextPrimary,
+		font=\large,
+		inner sep=4pt
+	}
+	]
+	
+	% ================= NODES =================
+	\node[main node] (A) at (0, 4) {$A_2$};
+	\node[main node] (B) at (-2.5, 2) {$B_3$};
+	\node[main node] (C) at (2.5, 2) {$C_1$};
+	\node[main node] (D) at (-4.5, 0) {$D_2$};
+	\node[main node] (E) at (-2.5, -1.5) {$E_1$};
+	\node[main node] (F) at (0, 0.2) {$F_1$};
+	\node[main node] (G) at (2.5, -1.5) {$G_0$};
+	
+	% ================= EDGES =================
+	\draw[edge] (A) -- (B) node[midway, above left, weight] {۱};
+	\draw[edge] (A) -- (C) node[midway, above right, weight] {۴};
+	
+	\draw[edge] (B) -- (D) node[midway, above left, weight] {۱};
+	\draw[edge] (B) -- (C) node[midway, above, weight] {۲};
+	\draw[edge] (B) -- (E) node[midway, right, weight] {۳};
+	
+	\draw[edge] (D) -- (E) node[midway, below left, weight] {۲};
+	
+	\draw[edge] (C) -- (F) node[midway, below right, weight] {۱};
+	\draw[edge] (C) -- (G) node[midway, right, weight] {۳};
+	
+	\draw[edge] (F) -- (G) node[midway, above right, weight] {۱};
+	
+	\draw[edge] (E) -- (G) node[midway, below, weight] {۳};
+	
+\end{tikzpicture}
+
+\pagebreak
+\GroupB:
+
+\begin{tikzpicture}[
+	scale=0.7,
+	transform shape,
+	% Standard node style
+	main node/.style={
+		circle,
+		draw=AccentCyan,
+		fill=BgCard,
+		text=TextPrimary,
+		very thick,
+		minimum size=1.2cm,
+		font=\Large,
+		align=center,
+		inner sep=0pt
+	},
+	% Directed Edge style
+	edge/.style={
+		->,          
+		>=stealth,   
+		draw=TextMuted,
+		very thick
+	},
+	% Edge weight label style
+	weight/.style={
+		text=TextPrimary,
+		font=\large,
+		inner sep=4pt
+	}
+	]
+	
+	% ================= NODES =================
+	\node[main node] (A) at (0, 4) {$A_4$};
+	
+	\node[main node] (B) at (-2.2, 1.8) {$B_2$};
+	\node[main node] (C) at (2.2, 2.2) {$C_2$};
+	
+	\node[main node] (D) at (-4, -1) {$D_4$};
+	\node[main node] (E) at (-1.2, -2.5) {$E_2$};
+	
+	\node[main node] (F) at (2.5, -0.2) {$F_1$};
+	
+	\node[main node] (H) at (1.2, -2.2) {$H_0$};
+	\node[main node] (G) at (4.2, -4) {$G_0$};
+	
+	% ================= EDGES =================
+	% From A
+	\draw[edge] (A) -- (B) node[midway, above left, weight] {۱};
+	\draw[edge] (A) -- (C) node[midway, above right, weight] {۱};
+	
+	% Between B and D (Parallel bidirectional edges using angles)
+	\draw[edge] (B.215) -- (D.55) node[midway, above left, weight] {۱};
+	\draw[edge] (D.35) -- (B.235) node[midway, below right, weight] {۲};
+	
+	% From B
+	\draw[edge] (B) -- (E) node[midway, right, weight] {۱};
+	
+	% From E
+	\draw[edge] (E) -- (C) node[midway, above left, weight] {۱};
+	\draw[edge] (E) -- (G) node[midway, below, weight] {۳};
+	
+	% From C
+	\draw[edge] (C) -- (F) node[midway, left, weight] {۱};
+	\draw[edge] (C) -- (G) node[midway, right, weight] {۴};
+	
+	% From F
+	\draw[edge] (F) -- (H) node[midway, left, weight] {۱};
+	
+\end{tikzpicture}
+
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال چهارم}}
+	
+	سوال مشترک \GroupA و \GroupB: 
+\vspace{0.2cm}
+\\
+\noindent
+	در یک گراف، به دوری که در آن همه‌ی رأس‌های گراف دقیقاً یک‌بار دیده شوند، دور همیلتونی می‌گویند. مسئله‌ی پیدا کردن دور همیلتونی در حالت کلی \lr{NP-Complete} است اما می‌خواهیم به کمک الگوریتم ژنتیک راه‌حلی برای آن ارائه دهیم.
+	
+	\begin{enumerate}
+		\item[(الف)] رشته‌های \lr{DNA} و تابع سازگاری (\lr{fitness}) را تعریف کنید. مقدار تابع سازگاری برای زمانی که به رشته‌ی هدف (دور همیلتونی) رسیده باشیم چقدر است؟
+		
+		\item[(ب)] هر کدام از مراحل \lr{selection}، \lr{cross-over}، \lr{mutation} را برای این مسئله را توضیح دهید.
+	\end{enumerate}
+
+
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+
+% Add more sections as needed...
+
+\end{document}
