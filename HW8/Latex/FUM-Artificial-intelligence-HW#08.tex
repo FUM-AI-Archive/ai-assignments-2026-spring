@@ -1,0 +1,319 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xepersian}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+
+
+% ---------------------------
+%     Color Palette
+% ---------------------------
+\definecolor{BgDark}{HTML}{141420}
+\definecolor{BgCard}{HTML}{1E1E2E}
+\definecolor{AccentBlue}{HTML}{7AA2F7}
+\definecolor{AccentPurple}{HTML}{BB9AF7}
+\definecolor{AccentCyan}{HTML}{7DCFFF}
+\definecolor{AccentGold}{HTML}{E0AF68}
+\definecolor{TextPrimary}{HTML}{CDD6F4}
+\definecolor{TextMuted}{HTML}{6C7086}
+\definecolor{RuleLine}{HTML}{313244}
+
+\pagecolor{BgDark}
+\color{TextPrimary}
+
+
+% ---------------------------
+%  RTL-safe Info Box
+% ---------------------------
+\newmdenv[
+backgroundcolor=BgCard,
+fontcolor=TextPrimary,
+linecolor=AccentBlue,
+linewidth=1.2pt,
+rightline=true,   % RTL: accent border on the RIGHT
+leftline=false,
+topline=false,
+bottomline=false,
+innerrightmargin=12pt,
+innerleftmargin=12pt,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+skipabove=10pt,
+skipbelow=10pt,
+]{infobox}
+% ---------------------------
+%        Font Setup
+% ---------------------------
+\settextfont{Vazir.ttf}[
+BoldFont = Vazir-Bold.ttf,
+Path = fonts/
+]
+\setlatintextfont{Vazir.ttf}[
+BoldFont = Vazir-Bold.ttf,
+Path = fonts/
+]
+
+% ---------------------------
+%     Custom Adjustments
+% ---------------------------
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\thesection}{\arabic{section}}
+
+% User-defined commands for homework info (adjust as needed)
+\newcommand{\HomeworkNumber}{8}
+\newcommand{\HomeworkDeadline}{1405/3/19}
+\newcommand{\id}{\texttt{\detokenize{@Amir_hossein83}}}
+
+
+
+\begin{document}
+	
+	% ---------------------------------
+	%            Title Page
+	% ---------------------------------
+	\begin{titlepage}
+		
+		% Background decorations — right-side rectangle + gold horizontal line
+		\begin{tikzpicture}[remember picture, overlay]
+			% Right-side vertical rectangle (accent block)
+			\fill[BgCard]
+			([xshift=-2.2cm]current page.north east) rectangle
+			(current page.south east);
+			\draw[AccentGold!60, line width=0.8pt]
+			([xshift=-2.2cm]current page.north east) --
+			([xshift=-2.2cm]current page.south east);
+		\end{tikzpicture}
+		
+		\vspace*{2.2cm}
+		
+		\begin{center}
+			% Logo
+			\includegraphics[scale=1.05]{assets/fum-logo.png}\\[1.0cm]
+			
+			\textcolor{RuleLine}{\rule{8cm}{0.6pt}}\\[0.6cm]
+			
+			{\Huge \bfseries \textcolor{TextPrimary}{مبانی و کاربردهای هوش مصنوعی}}\\[0.4cm]
+			
+			\textcolor{RuleLine}{\rule{8cm}{0.6pt}}\\[0.4cm]
+			
+			{\large \textcolor{AccentCyan}{دانشگاه فردوسی مشهد}}\\[0.1cm]
+			{\normalsize \textcolor{TextMuted}{گروه مهندسی کامپیوتر}}\\[0.2cm]
+			{\normalsize \textcolor{AccentGold}{دکتر زارعی}}\\[1.6cm]
+			{\normalsize \textcolor{TextMuted}{بهار 1405}}\\[0.2cm]
+			
+			% Homework number — simple, normal size
+			{\normalsize \textcolor{TextMuted}{تمرین شماره}}
+			{\large \bfseries \textcolor{AccentBlue}{\HomeworkNumber}}\\[1.4cm]
+			
+			% Deadline badge — gold border
+			\setlength{\fboxrule}{0.8pt}%
+			\fcolorbox{AccentGold!60}{BgCard}{%
+				\begin{minipage}{7cm}
+					\centering\vspace{5pt}
+					\textcolor{AccentGold}{\bfseries مهلت تحویل: \HomeworkDeadline}
+					\vspace{5pt}
+				\end{minipage}
+			}\\[0.8cm]
+			
+			% TA box — gold border
+			\fcolorbox{AccentGold!60}{BgCard}{%
+				\begin{minipage}{8cm}
+					\centering\vspace{5pt}
+					\textcolor{TextMuted}{مسئول تمرین:} \quad \textcolor{AccentCyan}{\id}
+					\vspace{5pt}
+				\end{minipage}
+			}
+		\end{center}
+		
+	\end{titlepage}
+	% ---------------------------------
+	%          Instructions Page
+	% ---------------------------------
+	\clearpage
+	
+	\vspace*{4pt}
+	\begin{center}
+		\colorbox{BgCard}{%
+			\begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}
+				\centering
+				\vspace{6pt}
+				{\bfseries\large \textcolor{AccentGold}{دستورالعمل‌ها}}
+				\vspace{6pt}
+			\end{minipage}%
+		}
+	\end{center}
+	\vspace{6pt}
+	
+	\begin{infobox}
+		دانشجویان محترم لطفا به موارد زیر توجه فرمایید:
+		\begin{itemize}
+			\itemsep0.4em
+			\item
+			تحویل تمرین‌ها فقط از طریق سامانه آموزش مجازی دانشگاه امکان‌پذیر است.
+			\item
+			تمرین‌ها باید دست‌نویس، خوانا و با استفاده از خودکار آبی یا مشکی و یا به صورت دیجیتالی با استفاده از قلم نوری نوشته شوند.
+			\item
+			از تمرین‌های حل‌شده دیگران استفاده نکنید. پیامدهای این کار با دانشجو می‌باشد.
+			\item
+			نوشتن جواب آخر به تنهایی نمره‌ای نداشته و تمام مراحل حل، مشمول نمره می‌باشد.
+			\item
+			به دلیل موعد از پیش تعیین‌شده تمرین‌ها و برنامه درسی، امکان تمدید تمرین وجود ندارد. همچنین ارسال تمرین پس از موعد تعیین‌شده نمره‌ای نخواهد داشت.
+			\item
+			نحوه نام‌گذاری فایل پاسخ باید مطابق جدول~\ref{tab:file_format} و به شکل \lr{\texttt{pdf}} باشد.
+		\end{itemize}
+		
+		\vspace{10pt}
+		
+		% RTL-safe table: use center environment, manual column colors
+		\begin{center}
+			\arrayrulecolor{RuleLine}
+			\begin{tabular}{|>{\columncolor{BgCard}\centering\arraybackslash}p{3cm}|>{\columncolor{BgDark}\centering\arraybackslash}p{7cm}|}
+				\hline
+				\textcolor{AccentCyan}{\bfseries\lr{Format}} &
+				\texttt{\lr{StudentID-Full\_Name-\#HwNo.pdf}} \\
+				\hline
+				\textcolor{AccentGold}{\bfseries\lr{Example}} &
+				\textcolor{TextMuted}{\texttt{\lr{9876543210-Alan\_Turing-\#01.pdf}}} \\
+				\hline
+			\end{tabular}
+			\captionof{table}{\textcolor{TextMuted}{شیوه نام‌گذاری فایل‌ها}}
+			\label{tab:file_format}
+		\end{center}
+		
+	\end{infobox}
+	
+	
+	\vspace{8pt}
+	\textcolor{AccentCyan}{\rule{\linewidth}{0.8pt}}
+	% ---------------------------------
+	%          questions
+	% ---------------------------------
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{\textcolor{AccentGold}{سؤال اول}}
+	
+	الگوریتم \lr{Graphplan} را شرح دهید و برای یک گراف برنامه‌ریزی:
+	
+	\begin{itemize}
+		\item[الف)] روش های هیوریستیک را نام ببرید و آن‌ها توضیح دهید.
+		\item[ب)] چه زمانهایی امکان رخداد \lr{Mutex Relation} بین دو اکشن وجود دارد؟
+	\end{itemize}
+	
+	\bigskip
+	\bigskip
+	\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{\textcolor{AccentGold}{سؤال دوم}}
+	
+	فرض کنید یک پهپاد (\lr{Drone}) وظیفه دارد یک محموله امدادی (\lr{Cargo}) را از کمپ اصلی در موقعیت \lr{Base} به دست یک تیم نجات در موقعیت \lr{Camp} برساند. در ابتدا پهپاد و محموله هر دو در \lr{Base} قرار دارند. وضعیت گیره نگهدارنده پهپاد در ابتدا خالی (\lr{Empty}) است. هدف نهایی این است که محموله در موقعیت \lr{Camp} قرار گیرد. اعمالی که پهپاد قادر به انجام آن‌ها است، همراه با پیش‌شرط‌ها و اثرات آن‌ها در زبان \lr{STRIPS} به شرح زیر است:
+	
+	\vspace{1em}
+	\begin{latin}
+		\textbf{Fly(x, y)}\\
+		Preconditions: At(Drone, x)\\
+		Effects: At(Drone, y) $\land$ $\neg$At(Drone, x)\\[1em]
+		
+		\textbf{Load(c, loc)}\\
+		Preconditions: At(Drone, loc) $\land$ At(c, loc) $\land$ Empty(Drone)\\
+		Effects: Holding(c, Drone) $\land$ $\neg$At(c, loc) $\land$ $\neg$Empty(Drone)\\[1em]
+		
+		\textbf{Drop(c, loc)}\\
+		Preconditions: At(Drone, loc) $\land$ Holding(c, Drone)\\
+		Effects: At(c, loc) $\land$ Empty(Drone) $\land$ $\neg$Holding(c, Drone)
+	\end{latin}
+	\vspace{1em}
+	
+	با توجه به این توصیف، به سوالات زیر پاسخ دهید:
+	
+	\begin{itemize}
+		\item[الف)] گراف برنامه‌ریزی (\lr{Planning Graph}) را برای این مسئله رسم کنید.
+		\item[ب)] هر ۳ موردی که منجر به \lr{Mutex Exclusion} در دو عمل و هر ۲ موردی که منجر به این شرایط بین دو \lr{literal} می‌شوند را به اختصار توضیح دهید و برای هر پنج مورد یک نمونه \lr{Mutex Link} پیدا کنید.
+	\end{itemize}
+	
+	\bigskip
+	\bigskip
+	\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{\textcolor{AccentGold}{سؤال سوم}}
+	
+	\begin{itemize}
+		\item[الف)] دو روش \lr{Forward State-Space Search} و \lr{Regression Search} را از نظر فضای جستجو، کارایی، ارتباط با هدف، ضریب انشعاب و میزان مرتبط‌بودن اعمال (\lr{Relevance}) به‌صورت کامل و تحلیلی مقایسه کنید.
+		\item[ب)] برای مسئلهٔ \lr{Blocks World} مثالی ارائه دهید که در آن جستجوی \lr{Forward} دارای فضای حالت بسیار بزرگ است، اما جستجوی \lr{Regression} به‌صورت مستقیم و سریع به اعمال مرتبط با هدف می‌رسد.
+		\item[ج)] مثالی ارائه کنید که در آن اجرای \lr{Regression Search} بسیار دشوار است یا غیرممکن می‌شود. دلیل دشوار شدن آن را تحلیل کنید.
+		\item[د)] توضیح دهید چرا \lr{Regression Search} در مسائلی که \lr{Subgoal Interaction} شدید دارند، کارایی پایینی پیدا می‌کند و ممکن است حتی بدتر از \lr{Forward Search} عمل کند.
+	\end{itemize}
+	
+	\bigskip
+	\bigskip
+	\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{\textcolor{AccentGold}{سؤال چهارم}}
+	
+	رویکرد \lr{SATPlan} مسئله برنامه‌ریزی را به یک مسئله ارضای‌پذیری منطق بولین (\lr{Boolean SAT}) تبدیل می‌کند که توسط حل‌کننده‌های قدرتمند \lr{SAT Solver} قابل حل است. فرض کنید می‌خواهیم یک مسئله برنامه‌ریزی با افق زمانی تعیین‌شده را به این روش فرموله کنیم. به موارد زیر پاسخ دهید:
+	
+	\begin{itemize}
+		\item[الف)] متغیرهای گزاره‌ای (\lr{Propositional Variables}) مورد نیاز برای نمایش وضعیت‌ها (\lr{Fluents}) و اعمال (\lr{Actions}) در هر گام زمانی را به طور دقیق تعریف کنید.
+		\item[ب)] برای فرموله‌سازی درست این مسئله، بندهای منطقی (\lr{Clauses}) مربوط به هر یک از موارد زیر را چگونه می‌نویسید؟ (نحوه نگاشت را با زبان ریاضی و منطق گزاره‌ای نشان دهید):
+		\begin{itemize}
+			\item پیش‌شرط‌ها و اثرات اعمال (\lr{Preconditions \& Effects})
+			\item اصول موضوعه چارچوب (\lr{Frame Axioms}) برای حل مسئله قاب (\lr{Frame Problem})
+			\item محدودیت‌های طرد متقابل اعمال (\lr{Action Mutex Constraints})
+		\end{itemize}
+		\item[ج)] به صورت تحلیلی توضیح دهید که چرا با وجود تولید فرمول‌های منطقی بسیار بزرگ و پیچیده، استفاده از حل‌کننده‌های مدرن \lr{SAT} می‌تواند در برخی از دامنه‌های برنامه‌ریزی عملکرد و سرعت بسیار بهتری نسبت به رویکردهای کلاسیک مانند \lr{Graphplan} داشته باشد؟
+	\end{itemize}
+	
+	\bigskip
+	\bigskip
+	\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{\textcolor{AccentGold}{سؤال پنجم}}
+	
+	در یک خط مونتاژ، یک ربات ثابت با دو بازوی مجزا (بازوی چپ \lr{LeftArm} و بازوی راست \lr{RightArm}) قرار دارد. روی میز کار ربات، دو قطعه وجود دارد: یک لنز (\lr{Lens}) و یک سنسور (\lr{Sensor}). ربات برای ساخت یک دوربین (\lr{Camera})، باید هر دو قطعه را همزمان در دست داشته باشد و سپس آن‌ها را به یکدیگر مونتاژ کند. (در این مسئله نیازی به جابجایی بین مکان‌های مختلف نیست).
+	
+	\vspace{1em}
+	\textbf{هدف ربات:}
+	\begin{itemize}
+		\item ساخت و مونتاژ نهایی دوربین (\lr{Camera}).
+	\end{itemize}
+	
+	\vspace{1em}
+	\textbf{موارد مورد انتظار:}
+	\begin{enumerate}
+		\item مجموعۀ گزاره‌ها (\lr{Predicates}) موردنیاز مسئله را خودتان به صورت دقیق تعریف کنید.
+		\item حالت اولیه (\lr{Initial State}) را مشخص کنید. (دقت کنید که در ابتدا هر دو بازو آزاد هستند و قطعات روی میز قرار دارند).
+		\item حالت هدف (\lr{Goal State}) را به صورت مجموعه‌ای از \lr{Literal}ها بنویسید.
+		\item اعمالی مانند \lr{PickUp} (برای برداشتن یک قطعه مشخص با یک بازوی مشخص) و \lr{Assemble} (برای مونتاژ کردن دو قطعه‌ای که ربات در دست دارد) را همراه با پیش‌شرط‌ها و اثرات (به سبک \lr{Add/Delete}) تعریف کنید.
+		\item سه سطح اول گراف برنامه‌ریزی را رسم کنید:
+		\begin{equation*}
+			S_0 \rightarrow A_0 \rightarrow S_1
+		\end{equation*}
+		\item تمام رابطه‌های \lr{Mutex} موجود در سطح‌های $A_0$ و $S_1$ را به دقت مشخص کنید (به ویژه تضادهای موجود در انتخاب بازوها برای قطعات مختلف).
+		\item توضیح دهید آیا رسیدن به هدف در سطح $S_1$ امکان‌پذیر است یا نیاز به گسترش سطح‌های بعدی (مثلا $A_1$ و $S_2$) وجود دارد؟ چرا؟
+	\end{enumerate}
+	
+	\vspace{1em}
+	\textbf{پیشنهاد (اختیاری):}
+	\begin{itemize}
+		\item می‌توانید گزاره‌هایی مانند:
+		\lr{OnTable(x)}, \lr{Free(arm)}, \lr{Holding(x, arm)}, \lr{Assembled(Camera)} 
+		را تعریف کنید.
+		\item عمل \lr{PickUp(x, arm)} نیازمند آزاد بودن بازو و روی میز بودن قطعه است.
+		\item عمل \lr{Assemble(x, arm1, y, arm2)} نیازمند این است که ربات قطعه اول را در بازوی اول و قطعه دوم را در بازوی دوم نگه داشته باشد. پس از این عمل، بازوها مجدداً آزاد می‌شوند.
+		\item در این مسئله به دلیل وجود منابع موازی (دو بازو)، بررسی \lr{Mutex}ها در سطح $A_0$ بسیار مهم است (مثلاً یک بازو نمی‌تواند همزمان دو قطعه را بردارد).
+	\end{itemize}
+	
+	\bigskip
+	\bigskip
+	\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+\end{document}
