@@ -1,0 +1,312 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xepersian}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+
+
+% ---------------------------
+%      Color Palette
+% ---------------------------
+\definecolor{BgDark}{HTML}{141420}
+\definecolor{BgCard}{HTML}{1E1E2E}
+\definecolor{AccentBlue}{HTML}{7AA2F7}
+\definecolor{AccentPurple}{HTML}{BB9AF7}
+\definecolor{AccentCyan}{HTML}{7DCFFF}
+\definecolor{AccentGold}{HTML}{E0AF68}
+\definecolor{TextPrimary}{HTML}{CDD6F4}
+\definecolor{TextMuted}{HTML}{6C7086}
+\definecolor{RuleLine}{HTML}{313244}
+
+\pagecolor{BgDark}
+\color{TextPrimary}
+
+
+% ---------------------------
+%  RTL-safe Info Box
+% ---------------------------
+\newmdenv[
+backgroundcolor=BgCard,
+fontcolor=TextPrimary,
+linecolor=AccentBlue,
+linewidth=1.2pt,
+rightline=true,   % RTL: accent border on the RIGHT
+leftline=false,
+topline=false,
+bottomline=false,
+innerrightmargin=12pt,
+innerleftmargin=12pt,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+skipabove=10pt,
+skipbelow=10pt,
+]{infobox}
+% ---------------------------
+%        Font Setup
+% ---------------------------
+\settextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+\setlatintextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+
+% ---------------------------
+%     Custom Adjustments
+% ---------------------------
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\thesection}{\arabic{section}}
+
+% User-defined commands for homework info (adjust as needed)
+\newcommand{\HomeworkNumber}{1}
+\newcommand{\HomeworkDeadline}{1403/12/22}
+\newcommand{\id}{\texttt{\detokenize{@Amir_Hossein_Afshar}}}
+
+
+
+\begin{document}
+
+% ---------------------------------
+%           Title Page
+% ---------------------------------
+\begin{titlepage}
+	
+	% Background decorations — right-side rectangle + gold horizontal line
+	\begin{tikzpicture}[remember picture, overlay]
+		% Right-side vertical rectangle (accent block)
+		\fill[BgCard]
+		([xshift=-2.2cm]current page.north east) rectangle
+		(current page.south east);
+		\draw[AccentGold!60, line width=0.8pt]
+		([xshift=-2.2cm]current page.north east) --
+		([xshift=-2.2cm]current page.south east);
+	\end{tikzpicture}
+	
+	\vspace*{2.2cm}
+	
+	\begin{center}
+		% Logo
+		\includegraphics[scale=1.05]{assets/fum-logo.png}\\[1.0cm]
+		
+		\textcolor{RuleLine}{\rule{8cm}{0.6pt}}\\[0.6cm]
+		
+		{\Huge \bfseries \textcolor{TextPrimary}{مبانی و کاربردهای هوش مصنوعی}}\\[0.4cm]
+		
+		\textcolor{RuleLine}{\rule{8cm}{0.6pt}}\\[0.4cm]
+		
+		{\large \textcolor{AccentCyan}{دانشگاه فردوسی مشهد}}\\[0.1cm]
+		{\normalsize \textcolor{TextMuted}{گروه مهندسی کامپیوتر}}\\[0.2cm]
+		{\normalsize \textcolor{AccentGold}{دکتر زارعی}}\\[1.6cm]
+		{\normalsize \textcolor{TextMuted}{بهار 1405}}\\[0.2cm]
+		
+		% Homework number — simple, normal size
+		{\normalsize \textcolor{TextMuted}{تمرین شماره}}
+		{\large \bfseries \textcolor{AccentBlue}{\HomeworkNumber}}\\[1.4cm]
+		
+		% Deadline badge — gold border
+		\setlength{\fboxrule}{0.8pt}%
+		\fcolorbox{AccentGold!60}{BgCard}{%
+			\begin{minipage}{7cm}
+				\centering\vspace{5pt}
+				\textcolor{AccentGold}{\bfseries مهلت تحویل: \HomeworkDeadline}
+				\vspace{5pt}
+			\end{minipage}
+		}\\[0.8cm]
+		
+		% TA box — gold border
+		\fcolorbox{AccentGold!60}{BgCard}{%
+			\begin{minipage}{8cm}
+				\centering\vspace{5pt}
+				\textcolor{TextMuted}{مسئول تمرین:} \quad \textcolor{AccentCyan}{\id}
+				\vspace{5pt}
+			\end{minipage}
+		}
+	\end{center}
+	
+\end{titlepage}
+% ---------------------------------
+%          Instructions Page
+% ---------------------------------
+\clearpage
+
+\vspace*{4pt}
+\begin{center}
+	\colorbox{BgCard}{%
+		\begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}
+			\centering
+			\vspace{6pt}
+			{\bfseries\large \textcolor{AccentGold}{دستورالعمل‌ها}}
+			\vspace{6pt}
+		\end{minipage}%
+	}
+\end{center}
+\vspace{6pt}
+
+\begin{infobox}
+	دانشجویان محترم لطفا به موارد زیر توجه فرمایید:
+	\begin{itemize}
+		\itemsep0.4em
+		\item
+		تحویل تمرین‌ها فقط از طریق سامانه آموزش مجازی دانشگاه امکان‌پذیر است.
+		\item
+		تمرین‌ها باید دست‌نویس، خوانا و با استفاده از خودکار آبی یا مشکی و یا به صورت دیجیتالی با استفاده از قلم نوری نوشته شوند.
+		\item
+		از تمرین‌های حل‌شده دیگران استفاده نکنید. پیامدهای این کار با دانشجو می‌باشد.
+		\item
+		نوشتن جواب آخر به تنهایی نمره‌ای نداشته و تمام مراحل حل، مشمول نمره می‌باشد.
+		\item
+		به دلیل موعد از پیش تعیین‌شده تمرین‌ها و برنامه درسی، امکان تمدید تمرین وجود ندارد. همچنین ارسال تمرین پس از موعد تعیین‌شده نمره‌ای نخواهد داشت.
+		\item
+		نحوه نام‌گذاری فایل پاسخ باید مطابق جدول~\ref{tab:file_format} و به شکل \lr{\texttt{pdf}} باشد.
+	\end{itemize}
+	
+	\vspace{10pt}
+	
+	% RTL-safe table: use center environment, manual column colors
+	\begin{center}
+		\arrayrulecolor{RuleLine}
+		\begin{tabular}{|>{\columncolor{BgCard}\centering\arraybackslash}p{3cm}|>{\columncolor{BgDark}\centering\arraybackslash}p{7cm}|}
+			\hline
+			\textcolor{AccentCyan}{\bfseries\lr{Format}} &
+			\texttt{\lr{StudentID-Full\_Name-\#HwNo.pdf}} \\
+			\hline
+			\textcolor{AccentGold}{\bfseries\lr{Example}} &
+			\textcolor{TextMuted}{\texttt{\lr{9876543210-Alan\_Turing-\#01.pdf}}} \\
+			\hline
+		\end{tabular}
+		\captionof{table}{\textcolor{TextMuted}{شیوه نام‌گذاری فایل‌ها}}
+		\label{tab:file_format}
+	\end{center}
+	
+\end{infobox}
+
+
+\vspace{8pt}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.8pt}}
+% ---------------------------------
+%          questions
+% ---------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال اول}}
+\noindent هر یک از گزاره‌های زیر را اثبات کنید.
+
+\begin{latin}
+\begin{enumerate}
+	\item $\alpha$ is satisfiable iff $\neg\alpha$ is not valid.
+	\item $\alpha \models \gamma$ iff the sentence $(\alpha \rightarrow \gamma)$ is valid.
+	\item $\alpha \equiv \neg\beta$ iff $(\alpha \leftrightarrow \neg\beta)$ is valid.
+	\item $\alpha \models \beta$ iff $(\alpha \wedge \neg\beta)$ is unsatisfiable.
+	\item $\alpha \equiv \beta$ iff $(\alpha \oplus \beta)$ is unsatisfiable.
+	\item $(\alpha \vee \beta)$ is valid iff both $\neg\alpha$ and $\neg\beta$ are unsatisfiable.
+	\item $(\alpha \wedge (\alpha \rightarrow \beta)) \models \beta$ iff $(\alpha \wedge \neg\beta)$ is unsatisfiable.
+\end{enumerate}
+\end{latin}
+\bigskip
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال دوم}}
+
+\noindent الف. تمام عبارات زیر را به فرم CNF تبدیل کنید.
+
+\begin{latin}
+\begin{enumerate}
+	\item $A \Leftrightarrow ((B \vee C) \Rightarrow D)$
+	\item $D \Rightarrow (E \wedge \neg F)$
+	\item $(A \wedge E) \Rightarrow G$
+	\item $\neg G \vee (F \Rightarrow H)$
+	\item $H \Leftrightarrow (C \vee \neg D)$
+	\item $B \Rightarrow (\neg A \vee F)$
+\end{enumerate}
+\end{latin}
+\noindent ب. با استفاده از روش Resolution، جمله زیر را از مجموعه‌ی جملات به‌دست‌آمده در بخش الف اثبات کنید یا رد کنید:
+
+\begin{latin}
+\begin{enumerate}
+	\item $\neg A \wedge \neg H \Rightarrow \neg B$
+\end{enumerate}
+\end{latin}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال سوم}}
+
+\noindent درستی یا نادرستی گزاره‌های زیر را اثبات کنید.
+
+\begin{latin}
+\begin{enumerate}
+	\item $(A \wedge (A \rightarrow C) \wedge (B \vee \neg C \rightarrow D)) \models D$
+	\item $(A \vee \neg B) \wedge (\neg A \vee D) \wedge (B \rightarrow E) \wedge (\neg E \vee G) \models G$
+	\item $A \wedge (A \rightarrow B) \wedge ((B \rightarrow C) \rightarrow D) \models D$
+	\item $\neg B \wedge (B \rightarrow C) \models \neg C$
+\end{enumerate}
+\end{latin}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{\textcolor{AccentGold}{سوال چهارم}}
+\noindent عبارات زیر را به گزاره‌های منطق مرتبۀ اول تبدیل کنید.
+
+\begin{latin}
+\begin{enumerate}
+	\item Every researcher who advises at least two students supervises all projects that involve one of their students.
+	\begin{itemize}
+		\item[] Predicates: $R(x)$: $x$ is a researcher
+		\item[] $S(x,y)$: $x$ is a student of $y$
+		\item[] $P(x,y)$: project $x$ involves $y$
+		\item[] $V(x,y)$: $x$ supervises project $y$
+	\end{itemize}
+	
+	\item There exists exactly one doctor who treats every patient that no nurse treats.
+	\begin{itemize}
+		\item[] Predicates: $D(x)$: $x$ is a doctor
+		\item[] $N(x)$: $x$ is a nurse
+		\item[] $T(x,y)$: $x$ treats $y$
+	\end{itemize}
+	
+	\pagebreak
+	
+	\item Any course that is taught by both a senior professor and a junior professor has at least three students enrolled in it.
+	\begin{itemize}
+		\item[] Predicates: $C(x)$: $x$ is a course
+		\item[] $S(x)$: $x$ is a student
+		\item[] $Prof(x)$: $x$ is a professor
+		\item[] $J(x)$: $x$ is junior
+		\item[] $T(x,y)$: $x$ teaches $y$
+		\item[] $E(x,y)$: $x$ is enrolled in $y$
+	\end{itemize}
+	
+	\item No more than four animals in the shelter are unvaccinated, and every unvaccinated animal must be examined by all veterinarians.
+	\begin{itemize}
+		\item[] Predicates: $A(x)$: $x$ is an animal
+		\item[] $U(x)$: $x$ is unvaccinated
+		\item[] $V(x)$: $x$ is a veterinarian
+		\item[] $E(x,y)$: $x$ examines $y$
+	\end{itemize}
+	
+	\item There is a unique city in which every citizen owns at least one building, and any building in that city has exactly one owner.
+	\begin{itemize}
+		\item[] Predicates: $City(x)$: $x$ is a city
+		\item[] $Person(x)$: $x$ is a person
+		\item[] $B(x)$: $x$ is a building
+		\item[] $Own(x,y)$: $x$ owns $y$
+		\item[] $In(x,y)$: $y$ is in $x$
+	\end{itemize}
+\end{enumerate}
+\end{latin}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+% Add more sections as needed...
+
+\end{document}

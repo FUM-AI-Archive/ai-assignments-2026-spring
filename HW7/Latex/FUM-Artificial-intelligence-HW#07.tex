@@ -1,0 +1,335 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xepersian}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+
+
+% ---------------------------
+%      Color Palette
+% ---------------------------
+\definecolor{BgDark}{HTML}{141420}
+\definecolor{BgCard}{HTML}{1E1E2E}
+\definecolor{AccentBlue}{HTML}{7AA2F7}
+\definecolor{AccentPurple}{HTML}{BB9AF7}
+\definecolor{AccentCyan}{HTML}{7DCFFF}
+\definecolor{AccentGold}{HTML}{E0AF68}
+\definecolor{TextPrimary}{HTML}{CDD6F4}
+\definecolor{TextMuted}{HTML}{6C7086}
+\definecolor{RuleLine}{HTML}{313244}
+
+\pagecolor{BgDark}
+\color{TextPrimary}
+
+
+% ---------------------------
+%  RTL-safe Info Box
+% ---------------------------
+\newmdenv[
+backgroundcolor=BgCard,
+fontcolor=TextPrimary,
+linecolor=AccentBlue,
+linewidth=1.2pt,
+rightline=true,   % RTL: accent border on the RIGHT
+leftline=false,
+topline=false,
+bottomline=false,
+innerrightmargin=12pt,
+innerleftmargin=12pt,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+skipabove=10pt,
+skipbelow=10pt,
+]{infobox}
+% ---------------------------
+%        Font Setup
+% ---------------------------
+\settextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+\setlatintextfont{Vazir.ttf}[
+    BoldFont = Vazir-Bold.ttf,
+    Path = fonts/
+]
+
+% ---------------------------
+%     Custom Adjustments
+% ---------------------------
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\thesection}{\arabic{section}}
+
+% User-defined commands for homework info (adjust as needed)
+\newcommand{\HomeworkNumber}{7}
+\newcommand{\HomeworkDeadline}{1405/3/6}
+\newcommand{\id}{\texttt{\detokenize{@MhsaArl}}}
+
+
+
+\begin{document}
+
+% ---------------------------------
+%           Title Page
+% ---------------------------------
+\begin{titlepage}
+	
+	% Background decorations — right-side rectangle + gold horizontal line
+	\begin{tikzpicture}[remember picture, overlay]
+		% Right-side vertical rectangle (accent block)
+		\fill[BgCard]
+		([xshift=-2.2cm]current page.north east) rectangle
+		(current page.south east);
+		\draw[AccentGold!60, line width=0.8pt]
+		([xshift=-2.2cm]current page.north east) --
+		([xshift=-2.2cm]current page.south east);
+	\end{tikzpicture}
+	
+	\vspace*{2.2cm}
+	
+	\begin{center}
+		% Logo
+		\includegraphics[scale=1.05]{assets/fum-logo.png}\\[1.0cm]
+		
+		\textcolor{RuleLine}{\rule{8cm}{0.6pt}}\\[0.6cm]
+		
+		{\Huge \bfseries \textcolor{TextPrimary}{مبانی و کاربردهای هوش مصنوعی}}\\[0.4cm]
+		
+		\textcolor{RuleLine}{\rule{8cm}{0.6pt}}\\[0.4cm]
+		
+		{\large \textcolor{AccentCyan}{دانشگاه فردوسی مشهد}}\\[0.1cm]
+		{\normalsize \textcolor{TextMuted}{گروه مهندسی کامپیوتر}}\\[0.2cm]
+		{\normalsize \textcolor{AccentGold}{دکتر زارعی}}\\[1.6cm]
+		{\normalsize \textcolor{TextMuted}{بهار 1405}}\\[0.2cm]
+		
+		% Homework number — simple, normal size
+		{\normalsize \textcolor{TextMuted}{تمرین شماره}}
+		{\large \bfseries \textcolor{AccentBlue}{\HomeworkNumber}}\\[1.4cm]
+		
+		% Deadline badge — gold border
+		\setlength{\fboxrule}{0.8pt}%
+		\fcolorbox{AccentGold!60}{BgCard}{%
+			\begin{minipage}{7cm}
+				\centering\vspace{5pt}
+				\textcolor{AccentGold}{\bfseries مهلت تحویل: \HomeworkDeadline}
+				\vspace{5pt}
+			\end{minipage}
+		}\\[0.8cm]
+		
+		% TA box — gold border
+		\fcolorbox{AccentGold!60}{BgCard}{%
+			\begin{minipage}{8cm}
+				\centering\vspace{5pt}
+				\textcolor{TextMuted}{مسئول تمرین:} \quad \textcolor{AccentCyan}{\id}
+				\vspace{5pt}
+			\end{minipage}
+		}
+	\end{center}
+	
+\end{titlepage}
+% ---------------------------------
+%          Instructions Page
+% ---------------------------------
+\clearpage
+
+\vspace*{4pt}
+\begin{center}
+	\colorbox{BgCard}{%
+		\begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}
+			\centering
+			\vspace{6pt}
+			{\bfseries\large \textcolor{AccentGold}{دستورالعمل‌ها}}
+			\vspace{6pt}
+		\end{minipage}%
+	}
+\end{center}
+\vspace{6pt}
+
+\begin{infobox}
+	دانشجویان محترم لطفا به موارد زیر توجه فرمایید:
+	\begin{itemize}
+		\itemsep0.4em
+		\item
+		تحویل تمرین‌ها فقط از طریق سامانه آموزش مجازی دانشگاه امکان‌پذیر است.
+		\item
+		تمرین‌ها باید دست‌نویس، خوانا و با استفاده از خودکار آبی یا مشکی و یا به صورت دیجیتالی با استفاده از قلم نوری نوشته شوند.
+		\item
+		از تمرین‌های حل‌شده دیگران استفاده نکنید. پیامدهای این کار با دانشجو می‌باشد.
+		\item
+		نوشتن جواب آخر به تنهایی نمره‌ای نداشته و تمام مراحل حل، مشمول نمره می‌باشد.
+		\item
+		به دلیل موعد از پیش تعیین‌شده تمرین‌ها و برنامه درسی، امکان تمدید تمرین وجود ندارد. همچنین ارسال تمرین پس از موعد تعیین‌شده نمره‌ای نخواهد داشت.
+		\item
+		نحوه نام‌گذاری فایل پاسخ باید مطابق جدول~\ref{tab:file_format} و به شکل \lr{\texttt{pdf}} باشد.
+	\end{itemize}
+	
+	\vspace{10pt}
+	
+	% RTL-safe table: use center environment, manual column colors
+	\begin{center}
+		\arrayrulecolor{RuleLine}
+		\begin{tabular}{|>{\columncolor{BgCard}\centering\arraybackslash}p{3cm}|>{\columncolor{BgDark}\centering\arraybackslash}p{7cm}|}
+			\hline
+			\textcolor{AccentCyan}{\bfseries\lr{Format}} &
+			\texttt{\lr{StudentID-Full\_Name-\#HwNo.pdf}} \\
+			\hline
+			\textcolor{AccentGold}{\bfseries\lr{Example}} &
+			\textcolor{TextMuted}{\texttt{\lr{9876543210-Alan\_Turing-\#01.pdf}}} \\
+			\hline
+		\end{tabular}
+		\captionof{table}{\textcolor{TextMuted}{شیوه نام‌گذاری فایل‌ها}}
+		\label{tab:file_format}
+	\end{center}
+	
+\end{infobox}
+
+
+\vspace{8pt}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.8pt}}
+% ---------------------------------
+%          questions
+% ---------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال اول}}
+
+جملات زیر را به فرم منطق مرتبه اول بنویسید:
+
+\begin{enumerate}
+	\item علی یا حداقل یک کتاب تاریخ و حداقل یک کتاب فلسفه دارد، یا غمگین است. (نه هر دو در یک زمان)
+	\item فقط یک نفر به جز خودِ علی وجود دارد که هر چیزی را که علی دوست دارد، دوست داشته باشد و آن فرد سینا است.
+	\item برخی از مردم در یک زمان مشخص شام می‌خورند، اما همه‌ی مردم در همه‌ی زمان‌ها شام نمی‌خورند.
+	\item در هر مسابقه، حتماً یکی از دو بازیکن برنده می‌شوند.
+	\item تمام درس‌های دانشگاه، سخت و بی‌فایده نیستند.
+	\item هر ماشینی به جز پراید و پیکان، امن و با کیفیت است.
+\end{enumerate}
+
+\bigskip
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{\textcolor{AccentGold}{سوال دوم}}
+در یک پروندهٔ جنایی، با داده‌های به‌دست‌آمده از طرف یک کارآگاه می‌خواهیم مدلی طراحی کنیم که با استفاده از استنتاج زنجیره‌ای رو‌به‌عقب \lr{(Backward Chaining)} تعیین می‌کند که آیا \lr{John} مظنون جنایت است یا خیر. گام‌های استنتاج را نشان دهید.
+
+
+\begin{latin}
+\textbf{Facts}
+\begin{itemize}
+	\item Fact 1: Witness1(Saw, John, CrimeScene)
+	\item Fact 2: Witness2(Saw, Jane, CrimeScene)
+	\item Fact 3: Witness2(Saw, John, CrimeScene)
+	\item Fact 4: Fingerprint(John, Gun), Motive(John, FinancialGain)
+	\item Fact 5: Motive(Jane, Revenge)
+	\item Fact 6: Weapon(Gun)
+	\item Fact 7: Time(Crime, Night)
+\end{itemize}
+
+\textbf{Rules}
+\begin{itemize}
+	\item Rule A: If Witness1(Saw, X, CrimeScene) and Witness2(Saw, X, CrimeScene) 
+	then PresentAtCrimeScene(X).
+	\item Rule B: If Fingerprint(X, Gun) and Weapon(Gun), then UsedWeapon(X, Gun).
+	\item Rule C: If Motive(X, FinancialGain) then HasMotive(X).
+	\item Rule D: If Motive(X, Revenge) then HasMotive(X).
+	\item Rule E: If PresentAtCrimeScene(X) and UsedWeapon(X, Gun) and HasMotive(X), then Suspect(X).
+\end{itemize}
+\end{latin}
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال سوم}}
+با استفاده از \lr{backward chaining} بررسی کنید که آیا \lr{Q} در پایگاه‌دانش زیر صحیح است یا خیر؟
+\begin{latin}
+\begin{itemize}
+	\item ${P} \rightarrow {Q}$
+	\item ${E} \rightarrow {B}$
+	\item ${R} \rightarrow {Q}$
+	\item ${M} \land {N} \rightarrow {Q}$
+	\item ${A} \land {B} \rightarrow {P}$
+	\item ${A} \rightarrow {M}$
+	\item ${C} \rightarrow {M}$
+	\item ${D} \rightarrow {N}$
+	\item ${D}$
+	\item ${A}$
+\end{itemize}
+\end{latin}
+
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال چهارم}}
+با استفاده از \lr{forward chaining} بررسی کنید که آیا \lr{H} در پایگاه‌دانش زیر صحیح است یا خیر:
+\begin{latin}
+\begin{itemize}
+	\item ${P}$
+	\item ${Q}$
+	\item ${R}$
+	\item ${P \land Q \rightarrow S}$
+	\item ${Q \land S \rightarrow U}$
+	\item ${U \rightarrow G}$
+	\item ${Q \land S \rightarrow U}$ % (تکراری طبق سؤال)
+	\item ${P \land T \rightarrow H}$
+	\item ${P \land R \rightarrow T}$
+\end{itemize}
+\end{latin}
+
+\bigskip
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال پنجم}}
+گزاره‌های زیر را به منطق مرتبه اول تبدیل کنید و سپس نتیجه را با کمک \lr{Resolution} استنتاج کنید.
+
+\textbf{مسئله ۱}
+\begin{enumerate}
+	\item هر کودکی، سانتا را دوست دارد.
+	\item هر کسی که سانتا را دوست دارد، هر گوزن شمالی‌ای را دوست دارد.
+	\item \lr{Rudolph} یک گوزن شمالی است و \lr{Rudolph} بینی قرمز دارد.
+	\item هر چیزی که بینی قرمز داشته باشد، یا عجیب است یا دلقک است.
+	\item هیچ گوزن شمالی‌ای دلقک نیست.
+	\item \lr{Scrooge} هیچ چیز عجیبی را دوست ندارد.
+	\item (نتیجه) \lr{Scrooge} کودک نیست.
+\end{enumerate}
+
+\textbf{مسئله ۲}
+\begin{enumerate}
+	\item هر کسی که پنیر بخرد، یا یک موش دارد یا یک فروشگاه مواد غذایی دارد.
+	\item هر گربه‌ای، یک موش را تعقیب می‌کند.
+	\item \lr{Peter} پنیر می‌خرد.
+	\item هر کسی که یک موش داشته باشد، از هر چیزی که هر موشی را تعقیب کند متنفر است.
+	\item \lr{Alex} یک گربه دارد.
+	\item کسی که از چیزی که متعلق به شخص دیگری است متنفر باشد، با آن شخص دوست نخواهد شد.
+	\item (نتیجه) اگر \lr{Peter} یک فروشگاه مواد غذایی نداشته باشد، با \lr{Alex} دوست نخواهد شد.
+\end{enumerate}
+
+\bigskip
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textcolor{AccentGold}{سوال ششم}}
+
+در جزیره‌ی \lr{Knights and Knaves}، شوالیه‌ها همیشه حقیقت را می‌گویند و دروغگوها همیشه دروغ می‌گویند، اما در ابتدا مشخص نیست چه کسی شوالیه است و چه کسی دروغگو. شما با \lr{Albert}، \lr{Betty} و \lr{Carla} روبه‌رو می‌شوید که هر کدام یا شوالیه هستند یا دروغگو.
+
+\begin{itemize}
+	\item \lr{Albert} می‌گوید: «\lr{Betty} شوالیه است، اما \lr{Carla} دروغگو است.»
+	\item \lr{Betty} می‌گوید: «دو نفر از ما شوالیه هستند.»
+	\item \lr{Carla} می‌گوید: «من و \lr{Albert} هر دو شوالیه هستیم.»
+\end{itemize}
+
+ثابت کنید که \lr{Carla} یک دروغگو است. (اطمینان حاصل کنید که تمام مراحل استدلال را توضیح می‌دهید و قواعدی را که در هر مرحله استفاده کرده‌اید، به‌وضوح مشخص می‌کنید.)
+
+\bigskip
+\bigskip
+\textcolor{AccentCyan}{\rule{\linewidth}{0.4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add more sections as needed...
+
+\end{document}
