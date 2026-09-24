@@ -1,0 +1,73 @@
+\documentclass[a4paper. 12pt]{article}
+\usepackage{fullpage}
+%\usepackage[a4paper, total={7in, 10in}, bottom=1.56in]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{xepersian}
+\usepackage{enumitem}
+
+ 
+% set font
+\settextfont{Vazir.ttf}[
+	BoldFont = Vazir-Bold.ttf, 
+	Path = fonts/ ]
+\setlatintextfont{Vazir.ttf}[
+BoldFont = Vazir-Bold.ttf, 
+Path = fonts/ ]
+
+% define custom commands
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\thesection}{\arabic{section})}
+\pagenumbering{gobble}
+
+% set homework parameters
+\newcommand{\HomeworkNumber}{1}
+
+% ---------------------------
+%      Color Palette
+% ---------------------------
+\definecolor{BgDark}{HTML}{141420}
+\definecolor{BgCard}{HTML}{1E1E2E}
+\definecolor{AccentBlue}{HTML}{7AA2F7}
+\definecolor{AccentPurple}{HTML}{BB9AF7}
+\definecolor{AccentCyan}{HTML}{7DCFFF}
+\definecolor{AccentGold}{HTML}{E0AF68}
+\definecolor{TextPrimary}{HTML}{CDD6F4}
+\definecolor{TextMuted}{HTML}{6C7086}
+\definecolor{RuleLine}{HTML}{313244}
+
+\pagecolor{BgDark}
+\color{TextPrimary}
+
+
+\begin{document}
+% header
+\hrule \medskip % Upper rule
+\begin{minipage}{0.295\textwidth}
+	\raggedleft
+	مبانی و کاربردهای هوش مصنوعی \\
+	دانشگاه فردوسی مشهد\\
+	گروه مهندسی کامپیوتر
+\end{minipage}
+\begin{minipage}{0.4\textwidth} 
+	\centering 
+	\includegraphics[scale=0.3]{assets/fum-logo.png}
+\end{minipage}
+\begin{minipage}{0.295\textwidth}
+	پاسخ تمرین \HomeworkNumber \\
+\end{minipage}
+\medskip\hrule 
+\bigskip
+پاسخ‌ها لزوما یکتا نیستند و پاسخ‌های درست دیگر نیز در نظر گرفته می‌شوند.\\
+
+\section{}
+%1-
+\pagebreak
+
+
+\section{}
+%2-
+\pagebreak
+
+\end{document}
